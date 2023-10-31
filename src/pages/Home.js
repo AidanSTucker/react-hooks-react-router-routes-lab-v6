@@ -1,15 +1,28 @@
-import { useEffect, useState } from "react";
+// Home.js
+import React from 'react';
+import MovieCard from '../components/MovieCard';
+import NavBar from '../components/NavBar';
 
-function Home() {
+const Home = () => {
+  // Sample movie data, replace with your own data
+  const movies = [
+    { id: 1, title: 'Movie 1' },
+    { id: 2, title: 'Movie 2' },
+    // Add more movies here
+  ];
+
   return (
-    <>
-      <header>
-        {/* What component should go here? */}
-      </header>
-      <main>
-        {/* Info goes here! */}
-      </main>
-    </>
+    <div>
+      <h1> 
+      <NavBar />
+      Home Page
+      </h1>
+      <div>
+        {movies.map((movie) => (
+          <MovieCard />
+        ))}
+      </div>
+    </div>
   );
 };
 
