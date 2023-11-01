@@ -7,7 +7,7 @@ const Directors = () => {
   useEffect(() => {
     fetch('http://localhost:4000/directors')
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => setDirectors(data));
   }, []);
 
   return (
@@ -16,6 +16,16 @@ const Directors = () => {
         <NavBar />
         Directors Page
       </h1>
+      {directors.map((director) => (
+        <article>
+          <h2>{director.name}</h2>
+          <ul>
+            {director.movies.map((movie) => (
+              <li>{movie}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
 
     </div>
   );

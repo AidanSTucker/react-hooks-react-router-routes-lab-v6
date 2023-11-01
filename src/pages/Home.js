@@ -2,6 +2,7 @@
 import React from 'react';
 import MovieCard from '../components/MovieCard';
 import NavBar from '../components/NavBar';
+import Movie from './Movie';
 
 const Home = () => {
   // Sample movie data, replace with your own data
@@ -18,9 +19,8 @@ const Home = () => {
       Home Page
       </h1>
       <div>
-        {movies.map((movie) => (
-          <MovieCard />
-        ))}
+        <MovieCard />
+  
       </div>
     </div>
   );

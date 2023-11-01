@@ -4,15 +4,36 @@ import NavBar from "../components/NavBar";
 function Movie() {
 
 
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/movies")
+    .then((response) => response.json())
+    .then(data => setMovies(data))
+  }, []);
+
   return (
-    <>
-      <header>
+    <div>
+      <h1>
         <NavBar />
-      </header>
-      <main>
-        {/* Movie info here! */}
-      </main>
-    </>
+        Movies
+      </h1>
+      {movies.map((movie) => (
+        <article>
+          <h2>{movie.title}</h2>
+          <ul>
+            {movie.time}
+          </ul>
+          <ul>
+          {movie.genres.map((genre) => (
+              <li>{genre}</li>
+            ))}
+          </ul>
+
+        </article>
+      ))}
+
+    </div>
   );
 };
 
