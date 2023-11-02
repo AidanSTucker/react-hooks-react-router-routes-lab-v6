@@ -1,26 +1,29 @@
-// Home.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MovieCard from '../components/MovieCard';
 import NavBar from '../components/NavBar';
-import Movie from './Movie';
 
 const Home = () => {
-  // Sample movie data, replace with your own data
-  const movies = [
-    { id: 1, title: 'Movie 1' },
-    { id: 2, title: 'Movie 2' },
-    // Add more movies here
-  ];
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/movies') 
+      .then((response) => response.json())
+      .then((data) => setMovies(data))
+      .catch((error) => {
+        console.error('Error fetching movie data: ', error);
+      });
+  }, []);
 
   return (
     <div>
-      <h1> 
-      <NavBar />
-      Home Page
+      <h1>
+        <NavBar />
+        Home Page
       </h1>
       <div>
-        <MovieCard />
-  
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} title={movie.title} movieId={movie.id} />
+        ))}
       </div>
     </div>
   );
